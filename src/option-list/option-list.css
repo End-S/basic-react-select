@@ -1,0 +1,31 @@
+.option-container {
+   background-color: white;
+   border: 1px solid grey;
+   border-top: none;
+   box-sizing: border-box;
+   max-height: 150px;
+   overflow-y: auto;
+   width: 200px;
+   z-index: 2;
+   position: absolute;
+}
+
+.option {
+   overflow: hidden;
+   padding-bottom: 5px;
+   padding-left: 5px;
+   padding-right: 2px;
+   padding-top: 5px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   position: relative;
+   cursor: pointer;
+}
+
+.option-keyboard-highlight {
+	background-color: cyan;
+}
+
+.option-mouse-highlight {
+	background-color: darkcyan;
+}
