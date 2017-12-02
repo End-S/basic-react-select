@@ -1,6 +1,6 @@
 .option-container {
-   background-color: white;
-   border: 1px solid grey;
+   background-color: #f8f8f8;
+   /*border: 1px solid grey;*/
    border-top: none;
    box-sizing: border-box;
    max-height: 150px;
@@ -20,12 +20,13 @@
    white-space: nowrap;
    position: relative;
    cursor: pointer;
+   text-align: left;
 }
 
 .option-keyboard-highlight {
-	background-color: cyan;
+	background-color: #D4E6F1;
 }
 
 .option-mouse-highlight {
-	background-color: darkcyan;
+	background-color: #A9CCE3;
 }

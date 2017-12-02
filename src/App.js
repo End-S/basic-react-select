@@ -14,7 +14,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <RSelect optionList={['test', 'test1', 'test2']}></RSelect>
+        <RSelect
+          optionList={['England', 'Wales', 'Scotland', 'Northen Ireland']}
+          selectedOption='England'
+        ></RSelect>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <RSelect optionList={['test', 'test1', 'test2']}></RSelect>
       </div>

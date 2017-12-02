@@ -12,41 +12,35 @@ class RSelect extends Component {
      super(props);
      // state properties - holds array of select options
      this.state = {
-        options: [new OptionItem(0,'Green Grass'), new OptionItem(1,'Lemon Grass'), new OptionItem(2, 'Mint Grass'), new OptionItem(3, 'Blue Grass'), new OptionItem(4, 'Burnt Grass'), new OptionItem(5, 'Long Grass')],
+        options: [],
         hideOptionList: true,
         selectedOption: new OptionItem(-1, '')
      };
-
-		 super(props);
-	 [
-		 'componentWillMount',
-		 'componentDidUpdate',
-		 'hideOptionList',
-		 'handleOptionSelection',
-		 'hasFocus',
-		 'handleClick',
-		 'handleKeyDown',
-		 'handleBlur',
-	 ].forEach((fn) => this[fn] = this[fn].bind(this));
   }
 
+/**
+ * *~*~*~*~*
+ * LIFECYCLE
+ * *~*~*~*~*
+ */
 
-	//    _ _  __                      _
-	//   | (_)/ _| ___  ___ _   _  ___| | ___
-	//   | | | |_ / _ \/ __| | | |/ __| |/ _ \
-	//   | | |  _|  __| (__| |_| | (__| |  __/
-	//   |_|_|_|  \___|\___|\__, |\___|_|\___|
-	//                      |___/
-
-	componentWillMount() {
-		const newOptions = [];
+	componentWillMount = () => {
+		let selectSetup = {}
+		selectSetup.options = [];
 		this.props.optionList.forEach( (option, i) => {
-			newOptions.push(new OptionItem(i, option.toString()))
-		})
-		this.setState({options: newOptions})
+			selectSetup.options.push(new OptionItem(i, option.toString()))
+		});
+
+		if(this.props.selectedOption) {
+			let preSelectedOptionIndex =  selectSetup.options.findIndex( option => {
+				return option.label === this.props.selectedOption });
+			selectSetup.selectedOption = selectSetup.options[preSelectedOptionIndex];
+		}
+
+		this.setState(selectSetup)
   }
 
-	componentDidUpdate() {
+	componentDidUpdate = () => {
 		if(this.state.hideOptionList) {
 			// remove click listener if list is no longer showing
 			document.removeEventListener('click', this.handleClick);
@@ -56,32 +50,33 @@ class RSelect extends Component {
 		}
 	}
 
-	//     __                  _   _
-	//    / _|_   _ _ __   ___| |_(_) ___  _ __  ___
-	//   | |_| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
-	//   |  _| |_| | | | | (__| |_| | (_) | | | \__ \
-	//   |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
-	//
+/**
+ * *~*~*~*~*
+ * FUNCTIONS
+ * *~*~*~*~*
+ */
 
-	hasFocus() {
+	// Add listener for keydown events when component has focus
+	hasFocus = () => {
 		document.addEventListener('keydown', this.handleKeyDown);
 	}
 
-	handleBlur(){
-		// remove the key listener
+	// Remove listener for keydown events when component blurs
+	handleBlur = () => {
 		document.removeEventListener('keydown', this.handleKeyDown);
 	}
 
-	handleKeyDown(event) {
+	// Handles open/close with enter or escape key press
+	handleKeyDown = (event) => {
 			if(event.key==='Enter' && this.state.hideOptionList){
 				this.hideOptionList(false);
 			} else if (event.key === 'Escape') {
 				this.hideOptionList(true);
 			}
-			// focus should not go to option list unless it has a highlight or down is pressed
 		}
 
-		handleClick(event) {
+	// Hides option list if click occurs outside component
+	handleClick = (event) => {
 			if(!this.selectRef.contains(event.target)) {
 				this.hideOptionList(true);
 				document.removeEventListener('click', this.handleClick);
@@ -89,13 +84,13 @@ class RSelect extends Component {
 		}
 
   // Toggles the option list to show or hide
-  hideOptionList(newState) {
+  hideOptionList = (newState) => {
     this.setState({hideOptionList: newState});
 
   }
 
   // Callback when an Option is chosen in the list
-  handleOptionSelection(option) {
+  handleOptionSelection = (option) => {
 	  // close option list
 	  this.hideOptionList(true);
 	  // update selected option
@@ -104,18 +99,18 @@ class RSelect extends Component {
 		this.inputRef.focus();
   }
 
-
-	//    _                       _       _
-	//   | |_ ___ _ __ ___  _ __ | | __ _| |_ ___
-	//   | __/ _ | '_ ` _ \| '_ \| |/ _` | __/ _ \
-	//   | ||  __| | | | | | |_) | | (_| | ||  __/
-	//    \__\___|_| |_| |_| .__/|_|\__,_|\__\___|
-	//                     |_|
+/**
+ * *~*~*~*~*
+ * RENDER
+ * *~*~*~*~*
+ */
 
   render() {
     let optionList;
     return (
       <div onBlur={this.handleBlur} className="select-container" ref = { r => this.selectRef = r } >
+			  <label className="select-label">Britain</label>
+				<div className="icon"></div>
         <input
 					readOnly
 					className="select-block"

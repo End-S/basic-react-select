@@ -10,44 +10,51 @@ class OptionList extends Component {
       currentIndex: this.props.selectedOption ? this.props.selectedOption.index : -1,
     };
     this.currentIndex = this.props.selectedOption ? this.props.selectedOption.index : -1,
+    // keeps hold of the time left before lookup resets
     this.lookupResetTimer = undefined;
+    // keeps track of the current matches
     this.matchStore = undefined;
+    // holds the term typed in for lookup
     this.matchTermBuilder = '';
+    // where we are when iterating over the matchStore
     this.matchIteratorValue = 0;
-
-    this.componentWillMount = this.componentWillMount.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillUnmount = this.componentWillUnmount.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleArrowUp = this.handleArrowUp.bind(this);
-    this.handleArrowDown = this.handleArrowDown.bind(this);
-    this.lookup = this.lookup.bind(this);
-    this.onKeyPress = this.onKeyPress.bind(this);
-    this.clearMatchBuilder = this.clearMatchBuilder.bind(this);
-    this.handleTabKey = this.handleTabKey.bind(this);
   }
 
-  componentWillMount() {
+/**
+ * *~*~*~*~*
+ * LIFECYCLE
+ * *~*~*~*~*
+ */
+
+  componentWillMount = () =>  {
+    // Add listners for keydown and keypess
     document.addEventListener('keydown', this.handleKeyDown);
     document.addEventListener('keypress', this.onKeyPress);
   }
 
-  componentDidMount() {
-    //this.optionListRef.focus();
+  componentDidMount = () => {
     if(this.currentIndex > -1) {
-      // if the starting option is out of view, position the list so that it isn't
+      // if the initial option is out of view, position the list so that it isn't
       if (!this.checkInView(this.optionListRef, this.currentIndex)) {
         this.jumpToOption(this.currentIndex);
       }
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
+    // Remove listners for keydown and keypess
     document.removeEventListener('keydown', this.handleKeyDown);
     document.removeEventListener('keypress', this.onKeyPress);
   }
 
-  handleKeyDown(event) {
+/**
+ * *~*~*~*~*
+ * FUNCTIONS
+ * *~*~*~*~*
+ */
+
+  // Passes valid key presses to it's related function
+  handleKeyDown = (event) => {
     const scrollElement = this.optionListRef;
 
     // bail if options list is undefined or empty
@@ -85,8 +92,7 @@ class OptionList extends Component {
   }
 
   //Handles navigation up the option list
-  handleArrowUp(scrollElement
-  ) {
+  handleArrowUp = (scrollElement) => {
      // remove highlight if at the minimum bound and perform early exit
      if (this.currentIndex === 0 || this.currentIndex === -1) {
         this.resetNavigation();
@@ -103,7 +109,7 @@ class OptionList extends Component {
   }
 
   //Handles navigation down the option list
-  handleArrowDown(scrollElement) {
+  handleArrowDown = (scrollElement) => {
     // early exit if bottom option is highlighted
     if (this.state.keyboardHighlight.index === this.props.options.length - 1) {
       return;
@@ -118,10 +124,8 @@ class OptionList extends Component {
     }
   }
 
-  /**
-   * Handles return key press on a highlighted option
-   */
-  handleReturnKey() {
+  // Handles return key press on a highlighted option
+  handleReturnKey = () => {
      // skip if we have not highlighted an option
      if (this.currentIndex !== -1) {
         // choose selected option
@@ -129,10 +133,8 @@ class OptionList extends Component {
      }
   }
 
-  /**
-   * Handles tab key press
-   */
-  handleTabKey() {
+  //Handles tab key press
+  handleTabKey = () => {
      // if there is an active highlight selected it
      if(this.state.keyboardHighlight.index>=0) {
         this.selectOption(this.state.keyboardHighlight);
@@ -141,6 +143,7 @@ class OptionList extends Component {
      }
   }
 
+  // Handles alphanumeric key presses
   onKeyPress = (event) => {
      if (!event.key.match(/^[ A-Za-z0-9_@./#&+-=*'{}()]$/)) {
         // reject anything that is not alphanumeric or an accepted symbol
@@ -149,8 +152,8 @@ class OptionList extends Component {
      this.lookup(event);
   }
 
-  lookup(event // alphanumeric key press
-  ) {
+  // Performs lookup with alphanumeric character
+  lookup = (event) => {
      window.clearTimeout(this.lookupResetTimer);
      event.preventDefault();
      // bail if options list is undefined or empty
@@ -208,17 +211,15 @@ class OptionList extends Component {
      }
   }
 
-  /**
-   * Resets to default lookup functionality
-   */
-  clearMatchBuilder() {
-    console.log('reset!');
+  // Resets to default lookup functionality
+  clearMatchBuilder = () => {
     this.matchStore = undefined;
     this.matchTermBuilder = '';
     this.matchIteratorValue = 0;
   }
 
-  jumpToOption(optionIndex) {
+  // Jumps to the given option, putting it in view
+  jumpToOption  = (optionIndex) => {
      const matchedOption = this.optionListRef.children[optionIndex];
      this.currentIndex = optionIndex;
      this.setState({keyboardHighlight: this.props.options[optionIndex]})
@@ -226,8 +227,8 @@ class OptionList extends Component {
      this.optionListRef.scrollTop = matchedOption.offsetTop;
   }
 
-  checkInView(container, childIndex // the index of the currently highlighted child element
-  ) { // true if 100% of the option in view, false if it is obscured
+  // Returns true if option is 100% in view
+  checkInView = (container, childIndex) => {
     // get number of pixels scrolled vertically:
     const containerTop = container.scrollTop;
     // find the bottom of the visible area
@@ -246,27 +247,31 @@ class OptionList extends Component {
     return inView;
   }
 
-  /**
-   * Reset option highlighting
-   */
-  resetNavigation() {
+  // Reset option highlighting
+  resetNavigation = () => {
     this.currentIndex = -1
     this.setState({keyboardHighlight:  {index:-1, label:''}, mouseHighlight: {}})
     this.optionListRef.scrollTop = 0;
-    //  this.matchTermBuilder = '';
   }
 
-  selectOption(option) {
+  // Propogate selected option to parent
+  selectOption = (option) => {
     this.props.onOptionSelection(option);
   }
 
-  setMouseHighlight(option) {
+  // Mouse hover uses separate highlight
+  setMouseHighlight = (option) => {
     this.setState({mouseHighlight: option});
   }
 
+/**
+ * *~*~*~*~*
+ * RENDER
+ * *~*~*~*~*
+ */
+
   render() {
     let optionList
-    //onMouseEnter={() => this.setMouseHighlight(option.index)}
     return (
       <div className="option-container" ref= { r => this.optionListRef = r }>
         {this.props.options.map(option =>

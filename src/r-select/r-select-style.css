@@ -1,20 +1,46 @@
 .select-container {
   width: 200px;
   display: inline-block;
+  position: relative;
+  text-align: left;
 }
 .select-block {
   height: 25px;
   width: 100%;
-  border: 1px solid black;
   box-sizing: border-box;
   cursor: pointer;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  font-size: 16px;
+  padding: 5px;
+  background-color: #f8f8f8;
 }
 
 .select-block:focus {
-  border-color: lightgreen;
-  border-width: 2px;
+  background-color: #F0F0F0;
+  border-color: darkblue;
 }
 
 .select-block::selection {
   background: none;
+}
+
+.select-label {
+  padding-left: 5px;
+  font-size: 12px
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+.icon::after{
+  content:"▾";
+  font-size: 18px;
 }
