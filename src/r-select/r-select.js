@@ -7,14 +7,14 @@ function OptionItem(index, label) {
 	  this.label = label;
 }
 
-class RSelect extends Component {
+class RBSelect extends Component {
   constructor(props) {
      super(props);
-     // state properties - holds array of select options
      this.state = {
-        options: [],
-        hideOptionList: true,
-        selectedOption: new OptionItem(-1, '')
+        options: [], // holds array of select options
+        hideOptionList: true, // option list visible or hidden
+        selectedOption: new OptionItem(-1, ''), // the currently selected option
+				label: '' // label to appear above select
      };
   }
 
@@ -35,6 +35,11 @@ class RSelect extends Component {
 			let preSelectedOptionIndex =  selectSetup.options.findIndex( option => {
 				return option.label === this.props.selectedOption });
 			selectSetup.selectedOption = selectSetup.options[preSelectedOptionIndex];
+			this.emitSelection(selectSetup.selectedOption);
+		}
+
+		if(this.props.label) {
+			selectSetup.label = this.props.label;
 		}
 
 		this.setState(selectSetup)
@@ -97,7 +102,13 @@ class RSelect extends Component {
 	  this.setState({selectedOption: option});
 		// set focus back to the select input
 		this.inputRef.focus();
+		this.emitSelection(option);
   }
+
+	// emits selected option and name of this control
+	emitSelection = (option) => {
+		this.props.emitSelection({selectedOption: option.label, name: this.props.name});
+	}
 
 /**
  * *~*~*~*~*
@@ -106,10 +117,9 @@ class RSelect extends Component {
  */
 
   render() {
-    let optionList;
     return (
-      <div onBlur={this.handleBlur} className="select-container" ref = { r => this.selectRef = r } >
-			  <label className="select-label">Britain</label>
+      <div onBlur={this.handleBlur} className={"select-container " + this.props.className} ref = { r => this.selectRef = r } >
+			  <label className="select-label">{this.state.label}</label>
 				<div className="icon"></div>
         <input
 					readOnly
@@ -134,4 +144,4 @@ class RSelect extends Component {
   }
 }
 
-export default RSelect;
+export default RBSelect;

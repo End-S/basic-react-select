@@ -1,28 +1,67 @@
-.App {
-  text-align: center;
+html {
+    height: 100%;
+    width: 100%;
+    text-rendering:geometricPrecision;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#root {
+  height: 100%;
 }
 
-.App-title {
-  font-size: 1.5em;
+.container {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 55% 25%;
+  grid-template-areas:
+      "header header header header"
+      ". bodyContent bodyContent ."
+      "footer footer footer footer";
 }
 
-.App-intro {
-  font-size: large;
+.header-area {
+    grid-area: header;
+    text-align: center;
+    font-size: 60px;
+    height: 150px;
+    line-height: 150px;
+    background-color: #C7F0BD;
+    font-family: 'Oswald', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.content-area {
+    grid-area: bodyContent;
+    min-height: 300px;
+    height: 100%;
+    padding: 15px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.footer-area {
+    display: flex;
+    flex-direction: row;
+    align-self: end;
+    align-items: flex-end;
+    justify-content: flex-end;
+    grid-area: footer;
+    background-color: #C7F0BD;
+    height: 80px;
+}
+
+.footer-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+}
+
+.select-box {
+  margin: 0 0 15px 0;
+  font-family: sans-serif;
 }

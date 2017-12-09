@@ -1,12 +1,11 @@
 .option-container {
    background-color: #f8f8f8;
-   /*border: 1px solid grey;*/
    border-top: none;
    box-sizing: border-box;
    max-height: 150px;
    overflow-y: auto;
    width: 200px;
-   z-index: 2;
+   z-index: 100;
    position: absolute;
 }
 
@@ -24,9 +23,9 @@
 }
 
 .option-keyboard-highlight {
-	background-color: #D4E6F1;
+	background-color: #BCE9FA;
 }
 
 .option-mouse-highlight {
-	background-color: #A9CCE3;
+	background-color: #E4F6FD;
 }

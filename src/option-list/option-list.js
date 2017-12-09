@@ -6,10 +6,9 @@ class OptionList extends Component {
     super(props);
     this.state = {
       mouseHighlight: {},
-      keyboardHighlight: this.props.selectedOption ? this.props.selectedOption : {index:-1, label:''},
-      currentIndex: this.props.selectedOption ? this.props.selectedOption.index : -1,
+      keyboardHighlight: this.props.selectedOption ? this.props.selectedOption : {index:-1, label:''}
     };
-    this.currentIndex = this.props.selectedOption ? this.props.selectedOption.index : -1,
+    this.currentIndex = this.props.selectedOption ? this.props.selectedOption.index : -1;
     // keeps hold of the time left before lookup resets
     this.lookupResetTimer = undefined;
     // keeps track of the current matches
@@ -271,7 +270,6 @@ class OptionList extends Component {
  */
 
   render() {
-    let optionList
     return (
       <div className="option-container" ref= { r => this.optionListRef = r }>
         {this.props.options.map(option =>

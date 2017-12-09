@@ -1,6 +1,6 @@
 .select-container {
   width: 200px;
-  display: inline-block;
+  display: block;
   position: relative;
   text-align: left;
 }
@@ -13,12 +13,12 @@
   border-bottom: 1px solid #AAA;
   font-size: 16px;
   padding: 5px;
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
 }
 
 .select-block:focus {
-  background-color: #F0F0F0;
-  border-color: darkblue;
+  background-color: #FCFCFC;
+  border-color: #6CCFF6;
 }
 
 .select-block::selection {
@@ -33,7 +33,7 @@
 .icon {
   height: 24px;
   width: 24px;
-  z-index: 100;
+  z-index: 99;
   position: absolute;
   right: 0;
   pointer-events: none;
