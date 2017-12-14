@@ -107,7 +107,7 @@ class RBSelect extends Component {
 
 	// emits selected option and name of this control
 	emitSelection = (option) => {
-		this.props.emitSelection({selectedOption: option.label, name: this.props.name});
+		this.props.emitSelection({selectedOption: option.label, target: {name: this.props.name}});
 	}
 
 /**

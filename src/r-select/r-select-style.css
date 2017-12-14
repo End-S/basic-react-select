@@ -19,6 +19,7 @@
 .select-block:focus {
   background-color: #FCFCFC;
   border-color: #6CCFF6;
+  border-width: 2px;
 }
 
 .select-block::selection {

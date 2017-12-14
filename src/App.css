@@ -42,7 +42,13 @@ body {
     min-height: 300px;
     height: 100%;
     padding: 15px;
+    font-size: 18px;
     font-family: 'Quicksand', sans-serif;
+}
+
+.content-area ul {
+  list-style: circle;
+  font-size: 17px;
 }
 
 .footer-area {
@@ -64,4 +70,17 @@ body {
 .select-box {
   margin: 0 0 15px 0;
   font-family: sans-serif;
+}
+
+.required-prop {
+  font-weight: bold;
+}
+
+.selected-option-display {
+  font-size: 14px;
+  color:red;
+}
+
+.code-snippit {
+  font-size: 16px;
 }
