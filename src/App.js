@@ -62,9 +62,7 @@ class App extends Component {
             emitSelection={this.onChange}
           ></RBSelect>
           <p>The object emitted is in the format:</p>
-          <Highlight lang={'javascript'} value={"{ selectedOption: 'the selected option', target: {name:'name given to the control'}}"} />
-
-          <p className='code-snippit'>{"{ selectedOption: 'the selected option', target: {name:'name given to the control'}}"}</p>
+          <Highlight className='code-snippit' lang={'javascript'} value={"{ selectedOption: 'String', target: {name:'String'}}"} />
         </div>
         <div className="footer-area">
           <span className="footer-text">By Robert Raynsford <a href='http://rrayns.co.uk' target='_blank' rel='noreferrer noopener'>rrayns.co.uk</a></span>

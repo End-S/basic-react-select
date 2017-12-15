@@ -20,7 +20,7 @@ body {
   height: 100%;
   width: 100%;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 20% 55% 25%;
+  grid-template-rows: auto;
   grid-template-areas:
       "header header header header"
       ". bodyContent bodyContent ."
@@ -82,5 +82,5 @@ body {
 }
 
 .code-snippit {
-  font-size: 16px;
+  font-size: 12px;
 }
