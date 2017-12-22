@@ -33,8 +33,8 @@ body {
     font-size: 60px;
     height: 150px;
     line-height: 150px;
-    background-color: #C7F0BD;
     font-family: 'Oswald', sans-serif;
+    border-bottom: solid 1px tomato;
 }
 
 .content-area {
@@ -58,7 +58,6 @@ body {
     align-items: flex-end;
     justify-content: flex-end;
     grid-area: footer;
-    background-color: #C7F0BD;
     height: 80px;
 }
 

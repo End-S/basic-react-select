@@ -46,9 +46,7 @@ class App extends Component {
                <p>It has the following props:
                   <ul>
                      <li><span className='required-prop'>name</span> - the name of the control</li>
-                     <li><span className='required-prop'>optionList</span> - the list of available options to appear
-                        when the select expands
-                     </li>
+                     <li><span className='required-prop'>optionList</span> - the list of available options</li>
                      <li><span className='required-prop'>emitSelection</span> - invoked when a value is selected</li>
                      <li>className - optional styling</li>
                      <li>label - optional label to appear above the select control</li>
@@ -72,8 +70,8 @@ class App extends Component {
                </p>
             </div>
             <div className="footer-area">
-               <span className="footer-text">By Robert Raynsford <a href='http://rrayns.co.uk' target='_blank'
-                                                                    rel='noreferrer noopener'>rrayns.co.uk</a></span>
+               <span className="footer-text">By <a href='http://rrayns.co.uk' target='_blank'
+                                                                    rel='noreferrer noopener'>Robert Raynsford</a></span>
             </div>
          </div>
       );
