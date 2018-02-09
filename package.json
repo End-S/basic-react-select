@@ -2,15 +2,23 @@
   "name": "react-select",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://rrayns.co.uk.s3-website.eu-west-2.amazonaws.com/experiments/basic-react-select/",
   "dependencies": {
     "css-loader": "^0.28.7",
     "highlight.js": "^9.12.0",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.2.0",
     "react-syntax-highlight": "^15.3.1",
     "style-loader": "^0.19.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "react-scripts": "1.0.14"
   },
   "scripts": {
